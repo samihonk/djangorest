@@ -1,6 +1,13 @@
 
-# Created by https://www.gitignore.io/api/node,django
-# Edit at https://www.gitignore.io/?templates=node,django
+# Created by https://www.gitignore.io/api/node,code,django
+# Edit at https://www.gitignore.io/?templates=node,code,django
+
+### Code ###
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
 
 ### Django ###
 *.log
@@ -210,4 +217,4 @@ public/
 # DynamoDB Local files
 .dynamodb/
 
-# End of https://www.gitignore.io/api/node,django
+# End of https://www.gitignore.io/api/node,code,django
