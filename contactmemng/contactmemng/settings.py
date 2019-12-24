@@ -120,3 +120,9 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATIC_URL = '/static/'
+
+# Load local settings
+try:
+    from .local_settings import *
+except ImportError:
+    pass
