@@ -1,34 +1,26 @@
 FROM python:3.8-alpine AS builder
-# FROM python:3-slim-buster
 
 ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
 
 WORKDIR /app
 
-#Alpine
 RUN apk update && apk add gcc python3-dev musl-dev libpq postgresql-dev libffi-dev
-
-#Slim
-# RUN apt-get update \
-#     && apt-get install -y gcc python3-dev musl-dev libpq-dev libffi-dev --no-install-recommends
 
 COPY Pipfile* ./
 
-RUN pip install pipenv && pipenv lock --requirements > requirements.txt 
-RUN pip install --user -r requirements.txt
+RUN pip install pipenv && sh -c 'PIPENV_VENV_IN_PROJECT=1 pipenv install'
 
-FROM python:3.8-alpine AS prod
+FROM alpine:latest AS prod
 
-#Alpine
-RUN apk update && apk add libpq
+ENV PYTHONDONTWRITEBYTECODE 1
+ENV PYTHONUNBUFFERED 1
 
-#Slim
-# RUN apt-get update \
-#     && apt-get install -y libpq --no-install-recommends
+RUN apk update && apk add libpq python3
 
-COPY --from=builder /root/.local /root/.local
-ENV PATH=/root/.local/bin:$PATH
+COPY --from=builder /app/.venv /opt/venv
+ENV PATH=/opt/venv/bin:$PATH
+ENV PYTHONPATH=/opt/venv/lib/python3.8/site-packages:$PYTHONPATH
 
 WORKDIR /app
 
