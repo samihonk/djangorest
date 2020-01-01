@@ -1,28 +1,35 @@
+FROM python:3.8-alpine AS builder
 # FROM python:3-slim-buster
-FROM python:3.8-alpine
 
 ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
 
 WORKDIR /app
 
-COPY Pipfile Pipfile.lock /app/
+#Alpine
+RUN apk update && apk add gcc python3-dev musl-dev libpq postgresql-dev libffi-dev
 
 #Slim
 # RUN apt-get update \
-#     && builddeps='gcc python3-dev musl-dev libpq-dev libffi-dev' \
-#     && apt-get install -y $builddeps --no-install-recommends
+#     && apt-get install -y gcc python3-dev musl-dev libpq-dev libffi-dev --no-install-recommends
+
+COPY Pipfile* ./
+
+RUN pip install pipenv && pipenv lock --requirements > requirements.txt 
+RUN pip install --user -r requirements.txt
+
+FROM python:3.8-alpine AS prod
 
 #Alpine
-RUN apk update \
-    && apk add --no-cache --virtual .build-deps gcc python3-dev musl-dev postgresql-libs postgresql-dev libffi-dev
-
-RUN pip install pipenv && pipenv install --system --deploy --ignore-pipfile
+RUN apk update && apk add libpq
 
 #Slim
-# RUN apt-get purge --auto-remove
+# RUN apt-get update \
+#     && apt-get install -y libpq --no-install-recommends
 
-#Alpine
-RUN apk del .build-deps
+COPY --from=builder /root/.local /root/.local
+ENV PATH=/root/.local/bin:$PATH
 
-COPY ./contactmemng /app/
+WORKDIR /app
+
+COPY . .

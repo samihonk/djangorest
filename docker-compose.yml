@@ -1,8 +1,22 @@
 version: '3.7'
 
 services: 
+    db:
+        image: postgres
+        restart: always
+        environment:
+            - POSTGRES_USER=postgres
+            - POSTGRES_PASSWORD=postgres
+            - POSTGRES_DB=postgres
+        ports:
+            - "5432:5432"
+        volumes:
+            - pgdata:/var/lib/postgresql/data
     web:
-        build: .
+        build:
+            context: .
+            dockerfile: Dockerfile
+            target: prod
         command: python /app/contactmemng/manage.py runserver 0.0.0.0:8000
         volumes: 
             - .:/app
@@ -10,8 +24,16 @@ services:
             - 8000:8000
         depends_on: 
             - migration
+            - db
     migration:
-        build: .
-        command: sh -c " python /app/contactmemng/manage.py migrate"
+        build: 
+            context: .
+            dockerfile: Dockerfile
+            target: prod
+        command: sh -c "python /app/contactmemng/manage.py makemigrations && python /app/contactmemng/manage.py migrate"
         volumes: 
             - .:/app
+        depends_on: 
+            - db
+volumes: 
+    pgdata:

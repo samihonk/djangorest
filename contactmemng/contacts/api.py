@@ -1,4 +1,4 @@
-from contacts.models import Contact
+from .models import Contact
 from rest_framework import viewsets, permissions
 from .serializers import ContactSerializer
 
