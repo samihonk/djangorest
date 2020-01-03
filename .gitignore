@@ -4,6 +4,7 @@
 
 ### User ###
 docker-compose.override.yml
+static*
 
 ### Code ###
 .vscode/*
