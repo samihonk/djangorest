@@ -26,6 +26,7 @@
 	"scripts": {
 		"test": "echo \"Error: no test specified\" && exit 1",
 		"dev": "webpack --mode development --watch ./contactmemng/reactfront/src/components/App.js --output ./contactmemng/reactfront/static/reactfront/main.js",
+		"devBuild": "webpack --mode development ./contactmemng/reactfront/src/components/App.js --output ./contactmemng/reactfront/static/reactfront/main.js",
 		"build": "webpack --mode production ./contactmemng/reactfront/src/components/App.js --output ./contactmemng/reactfront/static/reactfront/main.js"
 	},
 	"repository": {

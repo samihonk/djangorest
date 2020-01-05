@@ -1,6 +1,6 @@
-version: '3.7'
+version: "3.7"
 
-services: 
+services:
     db:
         image: postgres:12-alpine
         restart: always
@@ -10,30 +10,26 @@ services:
             - POSTGRES_DB=postgres
         volumes:
             - pgdata:/var/lib/postgresql/data
-        expose: 
+        expose:
             - "5432"
     web:
         build:
             context: .
             dockerfile: Dockerfile
             target: prod
-        command: python /app/contactmemng/manage.py runserver 0.0.0.0:8000
-        volumes: 
-            - .:/app
-        ports: 
+        command: python /opt/app/manage.py runserver 0.0.0.0:8000
+        ports:
             - 8000:8000
-        depends_on: 
+        depends_on:
             - migration
             - db
     migration:
-        build: 
+        build:
             context: .
             dockerfile: Dockerfile
             target: prod
-        command: sh -c "python /app/contactmemng/manage.py makemigrations && python /app/contactmemng/manage.py migrate"
-        volumes: 
-            - .:/app
-        depends_on: 
+        command: sh -c "python /opt/app/manage.py makemigrations && python /opt/app/manage.py migrate"
+        depends_on:
             - db
-volumes: 
+volumes:
     pgdata:
