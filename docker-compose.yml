@@ -17,18 +17,9 @@ services:
             context: .
             dockerfile: Dockerfile
             target: prod
-        command: python /opt/app/manage.py runserver 0.0.0.0:8000
+        command: sh -c "python manage.py migrate --no-input && python manage.py runserver 0.0.0.0:8000"
         ports:
             - 8000:8000
-        depends_on:
-            - migration
-            - db
-    migration:
-        build:
-            context: .
-            dockerfile: Dockerfile
-            target: prod
-        command: sh -c "python /opt/app/manage.py makemigrations && python /opt/app/manage.py migrate"
         depends_on:
             - db
 volumes:
