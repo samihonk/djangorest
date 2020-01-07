@@ -1,4 +1,10 @@
-import React, { Component, Fragment } from "react";
+import React, { Component } from "react";
+import {
+	BrowserRouter as Router,
+	Switch,
+	Route,
+	Redirect
+} from "react-router-dom";
 import ReactDOM from "react-dom";
 import Header from "./layout/Header";
 import Form from "./contact/Form";
@@ -29,13 +35,27 @@ class App extends Component {
 
 	render() {
 		return (
-			<Fragment>
+			<Router>
 				<Header />
-				<div className="container">
-					<Form submitMessage={this.submitMessage} />
-					<Contacts contacts={this.state.contacts} />
-				</div>
-			</Fragment>
+				<Switch className="container">
+					<Route
+						exact
+						path="/"
+						render={() => (
+							<Form submitMessage={this.submitMessage} />
+						)}
+					></Route>
+					<Route
+						exact path="/messages"
+						render={() => (
+							<Contacts contacts={this.state.contacts} />
+						)}
+					></Route>
+					<Route>
+						<Redirect to="/" />
+					</Route>
+				</Switch>
+			</Router>
 		);
 	}
 }
