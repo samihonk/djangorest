@@ -7,22 +7,28 @@ const Header = () => {
 			<Link className="navbar-brand" to="/">
 				Contact me
 			</Link>
-			<ul className="navbar-nav mr-auto">
-				<li className="nav-item">
-					<Link className="nav-link" to="/">
-						Home
-					</Link>
-				</li>
-				<li className="nav-item">
-					<Link className="nav-link" to="/messages">
-						Messages
-					</Link>
-				</li>
-			</ul>
-			<div
-				className="collapse navbar-collapse"
-				id="navbarNavAltMarkup"
-			></div>
+			<div className="collapse navbar-collapse" id="navbarNavAltMarkup">
+				<ul className="navbar-nav mr-auto">
+					<li className="nav-item">
+						<Link className="nav-link" to="/">
+							Home
+						</Link>
+					</li>
+					<li className="nav-item">
+						<Link className="nav-link" to="/messages">
+							Messages
+						</Link>
+					</li>
+				</ul>
+				<div className="navbar-nav">
+					<a className="nav-link" href="/api/">
+						Api
+					</a>
+					<a className="nav-link" href="/admin/">
+						Admin
+					</a>
+				</div>
+			</div>
 		</nav>
 	);
 };

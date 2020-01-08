@@ -38,22 +38,13 @@ class App extends Component {
 			<Router>
 				<Header />
 				<Switch className="container">
-					<Route
-						exact
-						path="/"
-						render={() => (
-							<Form submitMessage={this.submitMessage} />
-						)}
-					></Route>
-					<Route
-						exact path="/messages"
-						render={() => (
-							<Contacts contacts={this.state.contacts} />
-						)}
-					></Route>
-					<Route>
-						<Redirect to="/" />
+					<Route exact path="/">
+						<Form submitMessage={this.submitMessage} />
 					</Route>
+					<Route exact path="/messages">
+						<Contacts contacts={this.state.contacts} />
+					</Route>
+					<Redirect to="/" />
 				</Switch>
 			</Router>
 		);
