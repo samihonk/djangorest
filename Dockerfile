@@ -15,7 +15,7 @@ RUN pip install pipenv && sh -c 'PIPENV_VENV_IN_PROJECT=1 pipenv install' && npm
 
 COPY ./contactmemng ./contactmemng
 
-RUN npm run devBuild
+RUN npm run dev
 
 FROM alpine:latest AS prod
 

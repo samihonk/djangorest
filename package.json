@@ -2,7 +2,7 @@
 	"name": "djangorest",
 	"version": "1.0.0",
 	"description": "Simple rest api with authentication",
-	"main": "App.js",
+	"main": "index.js",
 	"eslintConfig": {
 		"env": {
 			"browser": true,
@@ -25,9 +25,9 @@
 	},
 	"scripts": {
 		"test": "echo \"Error: no test specified\" && exit 1",
-		"dev": "webpack --mode development --watch ./contactmemng/reactfront/src/components/App.js --output ./contactmemng/reactfront/static/reactfront/main.js",
-		"devBuild": "webpack --mode development ./contactmemng/reactfront/src/components/App.js --output ./contactmemng/reactfront/static/reactfront/main.js",
-		"build": "webpack --mode production ./contactmemng/reactfront/src/components/App.js --output ./contactmemng/reactfront/static/reactfront/main.js"
+		"start": "nodemon -w webpack.config.js -x webpack-dev-server --hot",
+		"dev": "webpack",
+		"build": "webpack --mode production "
 	},
 	"repository": {
 		"type": "git",
@@ -54,8 +54,11 @@
 		"eslint-plugin-promise": "^4.2.1",
 		"eslint-plugin-react": "^7.17.0",
 		"eslint-plugin-standard": "^4.0.1",
+		"nodemon": "^2.0.2",
+		"react-hot-loader": "^4.12.18",
 		"webpack": "^4.41.5",
-		"webpack-cli": "^3.3.10"
+		"webpack-cli": "^3.3.10",
+		"webpack-dev-server": "^3.10.1"
 	},
 	"dependencies": {
 		"axios": "^0.19.0",

@@ -5,11 +5,11 @@ import {
 	Route,
 	Redirect
 } from "react-router-dom";
-import ReactDOM from "react-dom";
 import Header from "./layout/Header";
 import Form from "./contact/Form";
 import Contacts from "./contact/Contacts";
 import axios from "axios";
+import { hot } from "react-hot-loader";
 
 class App extends Component {
 	state = {
@@ -51,4 +51,4 @@ class App extends Component {
 	}
 }
 
-ReactDOM.render(<App />, document.getElementById("app"));
+export default hot(module)(App);
