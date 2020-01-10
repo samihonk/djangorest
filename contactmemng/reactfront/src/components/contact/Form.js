@@ -1,17 +1,15 @@
-import React, { useState } from "react";
+import React from "react";
 import { useForm } from "react-hook-form";
 import axios from "axios";
 
 const Form = () => {
 	const { handleSubmit, register, errors } = useForm();
-	const [contacts, setContacts] = useState([]);
 	const emailRegex = /\S+@\S+\.\S+/;
 
 	const submitMessage = (message, e) => {
 		axios
 			.post("/api/contacts/", { ...message })
 			.then(res => {
-				setContacts([...contacts, res.data]);
 				console.log(res);
 			})
 			.catch(err => console.log(err));

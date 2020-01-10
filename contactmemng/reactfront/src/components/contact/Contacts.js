@@ -8,7 +8,12 @@ const Contacts = () => {
 	useEffect(() => {
 		axios
 			.get("/api/contacts/")
-			.then(res => setContacts(res.data))
+			.then(res => {
+				const sort = res.data.sort((a, b) => {
+					return new Date(b.create_time) - new Date(a.create_time);
+				});
+				setContacts(sort);
+			})
 			.catch(err => console.log(err));
 		// eslint-disable-next-line
 	}, []);
