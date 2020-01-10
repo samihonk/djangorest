@@ -1,8 +1,18 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Contact from "./Contact";
-import PropTypes from "prop-types";
+import axios from "axios";
 
-const Contacts = ({ contacts }) => {
+const Contacts = () => {
+	const [contacts, setContacts] = useState([]);
+
+	useEffect(() => {
+		axios
+			.get("/api/contacts/")
+			.then(res => setContacts(res.data))
+			.catch(err => console.log(err));
+		// eslint-disable-next-line
+	}, []);
+
 	return (
 		<div className="container">
 			<h1>Contact requests</h1>
@@ -11,10 +21,6 @@ const Contacts = ({ contacts }) => {
 			))}
 		</div>
 	);
-};
-
-Contacts.propTypes = {
-	contacts: PropTypes.array
 };
 
 export default Contacts;

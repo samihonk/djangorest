@@ -1,13 +1,20 @@
-import React from "react";
-import PropTypes from "prop-types";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
+import axios from "axios";
 
-const Form = ({ submitMessage }) => {
+const Form = () => {
 	const { handleSubmit, register, errors } = useForm();
+	const [contacts, setContacts] = useState([]);
 	const emailRegex = /\S+@\S+\.\S+/;
 
-	const onSubmit = (data, e) => {
-		submitMessage(data);
+	const submitMessage = (message, e) => {
+		axios
+			.post("/api/contacts/", { ...message })
+			.then(res => {
+				setContacts([...contacts, res.data]);
+				console.log(res);
+			})
+			.catch(err => console.log(err));
 		e.target.reset();
 	};
 
@@ -15,7 +22,7 @@ const Form = ({ submitMessage }) => {
 		<div className="container">
 			<form
 				className="form-group"
-				onSubmit={handleSubmit(onSubmit)}
+				onSubmit={handleSubmit(submitMessage)}
 				style={{
 					marginTop: "2px",
 					padding: "4px",
@@ -84,10 +91,6 @@ const Form = ({ submitMessage }) => {
 			</form>
 		</div>
 	);
-};
-
-Form.propTypes = {
-	submitMessage: PropTypes.func.isRequired
 };
 
 export default Form;

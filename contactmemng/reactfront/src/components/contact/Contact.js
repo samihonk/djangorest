@@ -21,7 +21,7 @@ const Contact = ({ contact: { title, email, message } }) => {
 };
 
 Contact.propTypes = {
-	contact: PropTypes.object
+	contact: PropTypes.object.isRequired
 };
 
 export default Contact;
