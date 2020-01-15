@@ -63,9 +63,9 @@ TEMPLATES = [
             'context_processors': [
                 'django.template.context_processors.debug',
                 'django.template.context_processors.request',
-                'django.template.context_processors.media',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'reactfront.context_processors.debug'
             ],
         },
     },
@@ -126,9 +126,6 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATIC_URL = '/static/'
-
-# For hot reload
-MEDIA_URL = 'http://localhost:8080/'
 
 # Load local settings
 try:
