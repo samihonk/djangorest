@@ -15,7 +15,9 @@ module.exports = {
 	devServer: {
 		headers: {
 			"Access-Control-Allow-Origin": "*"
-		}
+		},
+		host: "0.0.0.0",
+		port: "8080"
 	},
 	plugins: [new webpack.HotModuleReplacementPlugin()],
 	module: {
@@ -31,5 +33,9 @@ module.exports = {
 	},
 	resolve: {
 		alias: { "react-dom": "@hot-loader/react-dom" }
+	},
+	watchOptions: {
+		aggregateTimeout: 300,
+		poll: 1000
 	}
 };
