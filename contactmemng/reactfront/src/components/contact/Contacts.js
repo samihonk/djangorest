@@ -1,20 +1,13 @@
-import React, { useState, useEffect } from "react";
+import React, { useContext, useEffect } from "react";
 import Contact from "./Contact";
-import axios from "axios";
+import ContactContext from "../../context/contact/ContactContext";
 
 const Contacts = () => {
-	const [contacts, setContacts] = useState([]);
+	const contactContext = useContext(ContactContext);
+	const { contacts, getContacts } = contactContext;
 
 	useEffect(() => {
-		axios
-			.get("/api/contacts/")
-			.then(res => {
-				const sort = res.data.sort((a, b) => {
-					return new Date(b.create_time) - new Date(a.create_time);
-				});
-				setContacts(sort);
-			})
-			.catch(err => console.log(err));
+		getContacts();
 		// eslint-disable-next-line
 	}, []);
 

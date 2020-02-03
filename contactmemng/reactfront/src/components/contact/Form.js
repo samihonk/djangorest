@@ -1,20 +1,13 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useForm } from "react-hook-form";
-import axios from "axios";
+import ContactContext from "../../context/contact/ContactContext";
 
 const Form = () => {
 	const { handleSubmit, register, errors } = useForm();
 	const emailRegex = /\S+@\S+\.\S+/;
 
-	const submitMessage = (message, e) => {
-		axios
-			.post("/api/contacts/", { ...message })
-			.then(res => {
-				console.log(res);
-			})
-			.catch(err => console.log(err));
-		e.target.reset();
-	};
+	const contactContext = useContext(ContactContext);
+	const { submitMessage } = contactContext;
 
 	return (
 		<div className="container">
