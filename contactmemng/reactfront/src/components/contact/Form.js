@@ -1,19 +1,28 @@
-import React, { useContext } from "react";
+import React from "react";
+import axios from "axios";
 import { useForm } from "react-hook-form";
-import ContactContext from "../../context/contact/ContactContext";
+import { setCSRF, setHeaderAppJson } from "../../utils/AxiosHeaders";
 
 const Form = () => {
 	const { handleSubmit, register, errors } = useForm();
 	const emailRegex = /\S+@\S+\.\S+/;
 
-	const contactContext = useContext(ContactContext);
-	const { submitMessage } = contactContext;
+	const onSubmit = (message, e) => {
+		setCSRF();
+		setHeaderAppJson();
+		axios
+			.post("/api/contacts/", { ...message })
+			.then(() => {
+				e.target.reset();
+			})
+			.catch(err => console.log(err));
+	};
 
 	return (
 		<div className="container">
 			<form
 				className="form-group"
-				onSubmit={handleSubmit(submitMessage)}
+				onSubmit={handleSubmit(onSubmit)}
 				style={{
 					marginTop: "2px",
 					padding: "4px",

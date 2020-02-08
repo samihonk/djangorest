@@ -13,8 +13,6 @@ const ContactState = props => {
 	const [state, dispatch] = useReducer(ContactReducer, initialState);
 
 	const getContacts = () => {
-		axios.defaults.xsrfCookieName = "csrftoken";
-		axios.defaults.xsrfHeaderName = "X-CSRFTOKEN";
 		axios
 			.get("/api/contacts/")
 			.then(res => {
@@ -29,20 +27,12 @@ const ContactState = props => {
 			.catch(err => console.log(err));
 	};
 
-	const submitMessage = (message, e) => {
-		axios.defaults.xsrfCookieName = "csrftoken";
-		axios.defaults.xsrfHeaderName = "X-CSRFTOKEN";
-		axios
-			.post("/api/contacts/", { ...message })
-			.then(() => {
-				e.target.reset();
-			})
-			.catch(err => console.log(err));
-	};
-
 	return (
 		<ContactContext.Provider
-			value={{ contacts: state.contacts, getContacts, submitMessage }}
+			value={{
+				contacts: state.contacts,
+				getContacts
+			}}
 		>
 			{props.children}
 		</ContactContext.Provider>

@@ -1,7 +1,14 @@
-import React from "react";
+import React, { useContext, useEffect } from "react";
 import { Link } from "react-router-dom";
+import AuthContext from "../../context/auth/AuthContext";
 
 const Header = () => {
+	const authContext = useContext(AuthContext);
+
+	useEffect(() => {
+		authContext.loadUser();
+	}, []);
+
 	return (
 		<nav className="navbar navbar-expand-sm navbar-dark bg-dark">
 			<Link className="navbar-brand" to="/">
@@ -21,6 +28,9 @@ const Header = () => {
 					</li>
 				</ul>
 				<div className="navbar-nav">
+					<Link className="nav-link" to="/login">
+						Login
+					</Link>
 					<a className="nav-link" href="/api/">
 						Api
 					</a>
