@@ -1,18 +1,20 @@
 import React, { useContext, useEffect } from "react";
+import { useHistory } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import AuthContext from "../../context/auth/AuthContext";
 import PropTypes from "prop-types";
 
-const Login = props => {
+const Login = () => {
 	const authContext = useContext(AuthContext);
-	const { login } = authContext;
-	const { handleSubmit, register, errors, isAuthenticated } = useForm();
+	const { login, isAuthenticated } = authContext;
+	const { handleSubmit, register, errors } = useForm();
+	const history = useHistory();
 
 	useEffect(() => {
 		if (isAuthenticated) {
-			props.history.push("/messages");
+			history.push("/messages");
 		}
-	}, [isAuthenticated, props.history]);
+	}, [isAuthenticated]);
 
 	const onSubmit = message => {
 		login(message);
