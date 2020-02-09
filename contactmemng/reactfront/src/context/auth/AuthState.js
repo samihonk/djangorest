@@ -68,7 +68,7 @@ const AuthState = props => {
 		setCSRF();
 		setHeaderAppJson();
 		axios
-			.post("/api/auth/login")
+			.post("/api/auth/logout")
 			.then(() => {
 				dispatch({
 					type: LOGOUT
