@@ -8,6 +8,7 @@ export const setAuthToken = token => {
 	}
 };
 
+// TODO: Shouldn't be needed
 export const setCSRF = () => {
 	axios.defaults.xsrfCookieName = "csrftoken";
 	axios.defaults.xsrfHeaderName = "X-CSRFTOKEN";

@@ -16,6 +16,7 @@ const ContactState = props => {
 		axios
 			.get("/api/contacts/")
 			.then(res => {
+				// TODO: Sorting differently
 				const sort = res.data.sort((a, b) => {
 					return new Date(b.create_time) - new Date(a.create_time);
 				});

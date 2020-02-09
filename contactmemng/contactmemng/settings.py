@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'reactfront',
 ]
 
+# TODO: Disable sesion auth?
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
         'knox.auth.TokenAuthentication',
