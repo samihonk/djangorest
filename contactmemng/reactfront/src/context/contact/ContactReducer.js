@@ -1,4 +1,4 @@
-import { GET_CONTACTS } from "../types";
+import { GET_CONTACTS, CLEAR_CONTACTS } from "../types";
 
 export default (state, action) => {
 	switch (action.type) {
@@ -6,6 +6,11 @@ export default (state, action) => {
 			return {
 				...state,
 				contacts: action.payload
+			};
+		case CLEAR_CONTACTS:
+			return {
+				...state,
+				contacts: []
 			};
 		default:
 			return state;

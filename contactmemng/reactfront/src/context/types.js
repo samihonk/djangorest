@@ -1,4 +1,5 @@
 export const GET_CONTACTS = "GET_CONTACTS";
+export const CLEAR_CONTACTS = "CLEAR_CONTACTS";
 
 export const LOGIN_SUCCESS = "LOGIN_SUCCESS";
 export const LOGIN_FAIL = "LOGIN_FAIL";

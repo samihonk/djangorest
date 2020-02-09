@@ -2,7 +2,7 @@ import React, { useReducer } from "react";
 import axios from "axios";
 import ContactContext from "./ContactContext";
 import ContactReducer from "./ContactReducer";
-import { GET_CONTACTS } from "../types";
+import { GET_CONTACTS, CLEAR_CONTACTS } from "../types";
 import PropTypes from "prop-types";
 
 const ContactState = props => {
@@ -27,11 +27,18 @@ const ContactState = props => {
 			.catch(err => console.log(err));
 	};
 
+	const clearContacts = () => {
+		dispatch({
+			type: CLEAR_CONTACTS
+		});
+	};
+
 	return (
 		<ContactContext.Provider
 			value={{
 				contacts: state.contacts,
-				getContacts
+				getContacts,
+				clearContacts
 			}}
 		>
 			{props.children}
