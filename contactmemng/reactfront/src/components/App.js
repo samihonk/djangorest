@@ -9,6 +9,8 @@ import Header from "./layout/Header";
 import Form from "./contact/Form";
 import Contacts from "./contact/Contacts";
 import Login from "./auth/Login";
+import HomePage from "./layout/HomePage";
+import PrivateRoute from "./routing/PrivateRoute";
 import ContactState from "../context/contact/ContactState";
 import AuthState from "../context/auth/AuthState";
 import { setAuthToken } from "../utils/AxiosHeaders";
@@ -26,11 +28,14 @@ const App = () => {
 					<Header />
 					<Switch className="container">
 						<Route exact path="/">
+							<HomePage />
+						</Route>
+						<Route exact path="/sendMessage">
 							<Form />
 						</Route>
-						<Route exact path="/messages">
+						<PrivateRoute exact path="/messages">
 							<Contacts />
-						</Route>
+						</PrivateRoute>
 						<Route exact path="/login">
 							<Login />
 						</Route>

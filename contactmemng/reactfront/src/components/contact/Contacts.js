@@ -1,13 +1,16 @@
 import React, { useContext, useEffect } from "react";
 import Contact from "./Contact";
 import ContactContext from "../../context/contact/ContactContext";
+import AuthContext from "../../context/auth/AuthContext";
 
 const Contacts = () => {
 	const contactContext = useContext(ContactContext);
+	const authContext = useContext(AuthContext);
 	const { contacts, getContacts } = contactContext;
+	const { isAuthenticated } = authContext;
 
 	useEffect(() => {
-		getContacts();
+		isAuthenticated ? getContacts() : null;
 	}, []);
 
 	return (

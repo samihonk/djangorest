@@ -7,12 +7,12 @@ import ContactContext from "../../context/contact/ContactContext";
 const Header = () => {
 	const authContext = useContext(AuthContext);
 	const contactContext = useContext(ContactContext);
-	const { isAuthenticated, logout } = authContext;
+	const { isAuthenticated, logout, loadUser } = authContext;
 	const { clearContacts } = contactContext;
 	const history = useHistory();
 
 	useEffect(() => {
-		authContext.loadUser();
+		localStorage.token ? loadUser() : null;
 	}, []);
 
 	const onLogout = () => {
@@ -22,13 +22,13 @@ const Header = () => {
 		history.push("/");
 	};
 
-	const guest = (
+	const guestLogin = (
 		<Link className="nav-link" to="/login">
 			Login
 		</Link>
 	);
 
-	const auth = (
+	const authLogin = (
 		<>
 			<a href="#!" onClick={onLogout} className="nav-link">
 				Logout
@@ -40,6 +40,14 @@ const Header = () => {
 				Admin
 			</a>
 		</>
+	);
+
+	const authLinks = (
+		<li className="nav-item">
+			<Link className="nav-link" to="/messages">
+				Messages
+			</Link>
+		</li>
 	);
 
 	return (
@@ -55,13 +63,14 @@ const Header = () => {
 						</Link>
 					</li>
 					<li className="nav-item">
-						<Link className="nav-link" to="/messages">
-							Messages
+						<Link className="nav-link" to="/sendMessage">
+							Send message
 						</Link>
 					</li>
+					{isAuthenticated ? authLinks : null}
 				</ul>
 				<div className="navbar-nav">
-					{isAuthenticated ? auth : guest}
+					{isAuthenticated ? authLogin : guestLogin}
 				</div>
 			</div>
 		</nav>

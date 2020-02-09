@@ -11,9 +11,7 @@ const Login = () => {
 	const history = useHistory();
 
 	useEffect(() => {
-		if (isAuthenticated) {
-			history.push("/messages");
-		}
+		isAuthenticated ? history.push("/messages") : null;
 	}, [isAuthenticated]);
 
 	const onSubmit = message => {
@@ -74,7 +72,7 @@ const Login = () => {
 };
 
 Login.propTypes = {
-	history: PropTypes.object.isRequired
+	history: PropTypes.object
 };
 
 export default Login;
