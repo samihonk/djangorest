@@ -5,11 +5,8 @@ module.exports = {
 	mode: "development",
 	entry: ["./contactmemng/reactfront/src/index.js"],
 	output: {
-		path: path.resolve(
-			__dirname,
-			"contactmemng/reactfront/static/reactfront"
-		),
-		filename: "main.js",
+		path: path.resolve(__dirname, "contactmemng/reactfront/static/"),
+		filename: "reactfront/main.js",
 		publicPath: "http://localhost:8080/"
 	},
 	devServer: {

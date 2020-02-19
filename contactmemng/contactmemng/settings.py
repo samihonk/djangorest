@@ -77,7 +77,6 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-                'reactfront.context_processors.hot_load'
             ],
         },
     },
@@ -139,7 +138,7 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-HOT_LOAD = 'http://localhost:8080/main.js'
+HOT_LOAD = 'http://localhost:8080/'
 
 # Load local settings
 try:

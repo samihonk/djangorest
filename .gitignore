@@ -4,6 +4,7 @@
 
 ### User ###
 docker-compose.override.yml
+docker-compose.prod.yml
 Dockerfile.prod
 static*
 
