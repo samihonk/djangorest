@@ -17,7 +17,7 @@ services:
             context: .
             dockerfile: Dockerfile
             target: dev
-        command: sh -c "python ./contactmemng/manage.py migrate --no-input && python ./contactmemng/manage.py runserver 0.0.0.0:8000"
+        command: sh -c "python ./manager/manage.py migrate --no-input && python ./manager/manage.py runserver 0.0.0.0:8000"
         volumes:
             - .:/app
             - node_modules:/app/node_modules
