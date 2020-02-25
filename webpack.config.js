@@ -3,9 +3,9 @@ const webpack = require("webpack");
 
 module.exports = {
 	mode: "development",
-	entry: ["./contactmemng/reactfront/src/index.js"],
+	entry: ["./manager/reactfront/src/index.js"],
 	output: {
-		path: path.resolve(__dirname, "contactmemng/reactfront/static/"),
+		path: path.resolve(__dirname, "manager/reactfront/static/"),
 		filename: "reactfront/main.js",
 		publicPath: "http://localhost:8080/"
 	},

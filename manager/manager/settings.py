@@ -142,6 +142,6 @@ HOT_LOAD = 'http://localhost:8080/'
 
 # Load local settings
 try:
-    from .local_settings import *
+    from  .local_settings import *
 except ImportError:
     pass
