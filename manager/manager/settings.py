@@ -99,6 +99,7 @@ DATABASES = {
         'PORT': '5432',
     }
 }
+# For now use sqlite for testing
 # 'jenkins',
 if any([arg in sys.argv for arg in ['test']]):
     DATABASES = {
