@@ -17,7 +17,11 @@ services:
             context: .
             dockerfile: Dockerfile
             target: dev
-        command: sh -c "python ./manager/manage.py migrate --no-input && python ./manager/manage.py runserver 0.0.0.0:8000"
+        environment:
+            - DJANGO_SUPERUSER_USERNAME=tester
+            - DJANGO_SUPERUSER_PASSWORD=tester
+            - DJANGO_SUPERUSER_EMAIL=tester@email.com
+        command: sh -c "python3 ./manager/manage.py migrate --no-input && python3 ./manager/manage.py createsuperuser --no-input || true && python3 ./manager/manage.py runserver 0.0.0.0:8000"
         volumes:
             - .:/app
             - node_modules:/app/node_modules
@@ -30,7 +34,7 @@ services:
         build:
             context: .
             dockerfile: Dockerfile
-            target: dev
+            target: builder
         command: npm start
         volumes:
             - .:/app:rw
