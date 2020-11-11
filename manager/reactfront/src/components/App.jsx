@@ -3,7 +3,7 @@ import {
 	BrowserRouter as Router,
 	Switch,
 	Route,
-	Redirect
+	Redirect,
 } from "react-router-dom";
 import Header from "./layout/Header";
 import Form from "./contact/Form";

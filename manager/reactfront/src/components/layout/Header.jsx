@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { Fragment, useContext, useEffect } from "react";
 import { Link, useHistory } from "react-router-dom";
 import { setAuthToken } from "../../utils/AxiosHeaders";
 import AuthContext from "../../context/auth/AuthContext";
@@ -29,7 +29,7 @@ const Header = () => {
 	);
 
 	const authLogin = (
-		<>
+		<Fragment>
 			<a href="#!" onClick={onLogout} className="nav-link">
 				Logout
 			</a>
@@ -39,7 +39,7 @@ const Header = () => {
 			<a className="nav-link" href="/admin/">
 				Admin
 			</a>
-		</>
+		</Fragment>
 	);
 
 	const authLinks = (

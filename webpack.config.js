@@ -7,32 +7,33 @@ module.exports = {
 	output: {
 		path: path.resolve(__dirname, "manager/reactfront/static/"),
 		filename: "reactfront/main.js",
-		publicPath: "http://localhost:8080/"
+		publicPath: "http://localhost:8080/",
 	},
 	devServer: {
 		headers: {
-			"Access-Control-Allow-Origin": "*"
+			"Access-Control-Allow-Origin": "*",
 		},
 		host: "0.0.0.0",
-		port: "8080"
+		port: "8080",
 	},
 	plugins: [new webpack.HotModuleReplacementPlugin()],
 	module: {
 		rules: [
 			{
-				test: /\.js$/,
+				test: /\.jsx?$/,
 				exclude: /node_modules/,
 				use: {
-					loader: "babel-loader"
-				}
-			}
-		]
+					loader: "babel-loader",
+				},
+			},
+		],
 	},
 	resolve: {
-		alias: { "react-dom": "@hot-loader/react-dom" }
+		alias: { "react-dom": "@hot-loader/react-dom" },
+		extensions: [".js", ".jsx"],
 	},
 	watchOptions: {
 		aggregateTimeout: 300,
-		poll: 1000
-	}
+		poll: 1000,
+	},
 };
